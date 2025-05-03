@@ -1,0 +1,21 @@
+<mat-card class="auth-card">
+    <h2>Connexion</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Se connecter</button>
+    </form>
+    <div class="register-link" style="margin-top: 1rem; text-align: center;">
+        <span>Pas encore de compte ?</span>
+        <a routerLink="/auth/register" style="margin-left: 0.5rem;">Créer un compte</a>
+      </div>
+  </mat-card>
+  
