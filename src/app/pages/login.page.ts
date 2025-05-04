@@ -49,9 +49,9 @@ export class LoginPage {
           const decoded = this.jwtHelper.decodeToken(token);
           const role = decoded?.role;
           if (role === 'Artisan') {
-            this.router.navigate(['/artisan/dashboard']);
+            this.router.navigate(['/dashboard/artisan']);
           } else if (role === 'Client') {
-            this.router.navigate(['/client/dashboard']);
+            this.router.navigate(['/dashboard/client']);
           } else {
             this.router.navigate(['/']);
           }
