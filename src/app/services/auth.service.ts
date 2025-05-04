@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 export interface RegisterDto {
   username: string;
@@ -22,9 +23,8 @@ interface AuthResponse {
 export class AuthService {
   private http = inject(HttpClient);
   private readonly apiUrl = 'https://localhost:5001'; // adapte selon ton backend
-
+  private jwtHelper = new JwtHelperService();
   register(data: RegisterDto): Observable<AuthResponse> {
-    data.role = "Customer"
     return this.http.post<AuthResponse>(`${this.apiUrl}/register`, data);
   }
 
