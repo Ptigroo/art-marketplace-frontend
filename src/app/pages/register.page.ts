@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 import {
 } from '@angular/material';
 
@@ -20,7 +21,8 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule
   ],
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss']
@@ -28,6 +30,11 @@ import {
 export class RegisterPage {
   form: FormGroup;
 
+  roles = [
+    { label: 'Client', value: 'Customer' },
+    { label: 'Artiste', value: 'Artisan' },
+    { label: 'Partenaire', value: 'DeliveryPartner' }
+  ];
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -35,7 +42,8 @@ export class RegisterPage {
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      role: ['', [Validators.required]]
     });
   }
 

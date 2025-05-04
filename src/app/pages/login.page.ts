@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Component({
@@ -27,7 +28,7 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class LoginPage {
   form: FormGroup;
-
+  jwtHelper = new JwtHelperService();
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -42,8 +43,22 @@ export class LoginPage {
   onSubmit(): void {
     if (this.form.valid) {
       this.authService.login(this.form.value).subscribe({
-        next: () => this.router.navigate(['/']),
-        error: err => alert('Login failed')
+        next: res => {
+          const token = res.token;
+          localStorage.setItem('token', token);
+          const decoded = this.jwtHelper.decodeToken(token);
+          const role = decoded?.role;
+          if (role === 'Artisan') {
+            this.router.navigate(['/dashboard/artisan']);
+          } else if (role === 'Client') {
+            this.router.navigate(['/dashboard/client']);
+          } else {
+            this.router.navigate(['/']);
+          }
+        },
+        error: err => {
+          console.error('Login error', err);
+        }
       });
     }
   }
