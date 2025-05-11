@@ -50,8 +50,8 @@ export class LoginPage {
           const role = decoded?.role;
           if (role === 'Artisan') {
             this.router.navigate(['/artisan/dashboard']);
-          } else if (role === 'Client') {
-            this.router.navigate(['/dashboard/client']);
+          } else if (role === 'Customer') {
+            this.router.navigate(['/customer/dashboard']);
           } else {
             this.router.navigate(['/']);
           }
