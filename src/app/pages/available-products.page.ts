@@ -34,4 +34,8 @@ export class AvailableProductsPage implements OnInit {
       error: err => console.error('Failed to load products:', err)
     });
   }
+  buyProduct(product: any): void {
+    this.productService.getAllProducts()
+  console.log('Buying product:', product);
+  }
 }

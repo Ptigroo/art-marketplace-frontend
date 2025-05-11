@@ -28,4 +28,12 @@ export class ProductService {
   });
   return this.http.get<any[]>(`${this.apiUrl}/all`, {headers});
 }
+buyProduct(product: any): Observable<any> {
+    
+    const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.patch<any>(`${this.apiUrl}/buy`, product ,{headers});
+}
 }

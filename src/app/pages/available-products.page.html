@@ -1,12 +1,21 @@
 
+<mat-toolbar color="primary">
+    <button mat-button routerLink="/customer/available-products">Home</button>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/customer/dashboard">dashboard</button>
+    <button mat-button routerLink="/auth/login">Déconnexion</button>
+  </mat-toolbar>
 <div class="product-list">
   <mat-card *ngFor="let product of products" class="product-card">
-    <img mat-card-image [src]="product.imageUrl" alt="{{ product.title }}">
+    <img mat-card-image [src]="product.imageUrl"  alt="{{ product.title }}">
     <mat-card-title>{{ product.title }}</mat-card-title>
     <mat-card-content>
       <p>{{ product.description }}</p>
       <p><strong>Price:</strong> {{ product.price }} €</p>
       <p><strong>Category:</strong> {{ product.category }}</p>
     </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="buyProduct(product)">Buy</button>
+  </mat-card-actions>
   </mat-card>
 </div>

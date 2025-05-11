@@ -51,7 +51,7 @@ export class LoginPage {
           if (role === 'Artisan') {
             this.router.navigate(['/artisan/dashboard']);
           } else if (role === 'Customer') {
-            this.router.navigate(['/customer/dashboard']);
+            this.router.navigate(['/customer/available-products']);
           } else {
             this.router.navigate(['/']);
           }

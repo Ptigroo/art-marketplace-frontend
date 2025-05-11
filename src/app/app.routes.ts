@@ -12,6 +12,6 @@ export const routes: Routes = [
     { path: 'artisan/dashboard', component: ArtisanDashboardPage },
     { path: 'artisan/add-product', component: AddProductPage },
     { path: 'customer/dashboard', component: CustomerDashboardPage },
-    { path: 'artisan/available-products', component: AvailableProductsPage },
+    { path: 'customer/available-products', component: AvailableProductsPage },
     { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
     { path: '**', redirectTo: 'auth/login' }];
