@@ -26,7 +26,7 @@ export class ProductService {
   const headers = new HttpHeaders({
     Authorization: `Bearer ${token}`
   });
-  return this.http.get<any[]>(`${this.apiUrl}/available`, {headers});
+  return this.http.get<any[]>(`${this.apiUrl}/availables`, {headers});
 }
 getBoughtProducts(): Observable<any[]> {
     
