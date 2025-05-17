@@ -50,7 +50,7 @@ export class LoginPage {
           const role = decoded?.role;
           this.authService.setRole(role);
           if (role === 'Artisan') {
-            this.router.navigate(['/artisan/dashboard']);
+            this.router.navigate(['/artisan/my-products']);
           } else if (role === 'Customer') {
             this.router.navigate(['/customer/available-products']);
           } else {

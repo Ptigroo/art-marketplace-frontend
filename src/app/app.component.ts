@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { CustomerToolbarComponent } from './customer-toolbar/customer-toolbar.component';
-import { ArtisanToolbarComponent } from './artisan-toolbar/artisan-toolbar.component';
+import { CustomerToolbarComponent } from './components/customer-toolbar/customer-toolbar.component';
+import { ArtisanToolbarComponent } from './components/artisan-toolbar/artisan-toolbar.component';
 import { AuthService } from './services/auth/auth.service';
 
 @Component({

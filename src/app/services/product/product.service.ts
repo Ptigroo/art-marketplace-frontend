@@ -44,4 +44,13 @@ buyProduct(product: any): Observable<any> {
   });
   return this.http.patch<any>(`${this.apiUrl}/buy/${product}`,{},{headers});
 }
+
+getMyProductAsArtist(): Observable<any> {
+    
+    const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.get<any>(`${this.apiUrl}/artisan/`,{headers});
+}
 }

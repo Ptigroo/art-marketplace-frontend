@@ -6,11 +6,12 @@ import { AddProductPage } from './pages/artisan/add-product/artisan-add-product.
 import { AvailableProductsPage } from './pages/customer/available-products/available-products.page';
 import { RoleRedirectGuard } from './guards/role-redirect.guard';
 import { MyProductsPage } from './pages/customer/my-products/my-products.page';
+import { MyProductsAsArtistPage } from './pages/artisan/my-products/my-products.page';
 
 export const routes: Routes = [
     { path: 'auth/login', component: LoginPage },
     { path: 'auth/register', component: RegisterPage },
-    { path: 'artisan/dashboard', component: ArtisanDashboardPage },
+    { path: 'artisan/my-products', component: MyProductsAsArtistPage },
     { path: 'artisan/add-product', component: AddProductPage },
     { path: 'customer/bought-products', component: MyProductsPage },
     { path: 'customer/available-products', component: AvailableProductsPage },
