@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CustomerToolbarComponent } from './customer-toolbar/customer-toolbar.component';
 import { ArtisanToolbarComponent } from './artisan-toolbar/artisan-toolbar.component';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',

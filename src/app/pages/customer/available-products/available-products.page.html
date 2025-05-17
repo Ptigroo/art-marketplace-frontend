@@ -1,7 +1,6 @@
 
-
 <div class="product-list">
-  <mat-card *ngFor="let product of products" class="product-card">
+  <mat-card  *ngFor="let product of products" class="product-card">
     <img mat-card-image [src]="product.imageUrl"  alt="{{ product.title }}">
     <mat-card-title>{{ product.title }}</mat-card-title>
     <mat-card-content>
@@ -10,7 +9,7 @@
       <p><strong>Category:</strong> {{ product.category }}</p>
     </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="buyProduct(product)">Buy</button>
+    <button mat-raised-button color="primary" (click)="buyProduct(product)">Acheter</button>
   </mat-card-actions>
   </mat-card>
 </div>

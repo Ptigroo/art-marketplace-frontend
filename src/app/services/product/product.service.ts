@@ -5,11 +5,11 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'  // 👈 ensures the service is globally available
+  providedIn: 'root'  
 })
 export class ProductService {
   private http = inject(HttpClient);
-  private readonly apiUrl = 'https://localhost:5001'; // adapte selon ton backend
+  private readonly apiUrl = 'https://localhost:5001/product'; 
   constructor() { }
   createProduct(productData: FormData): Observable<any> {
     const token = localStorage.getItem('token');
@@ -19,14 +19,22 @@ export class ProductService {
   });
     return this.http.post(`${this.apiUrl}/addproduct`, productData, {headers});
   }
-  getAllProducts(): Observable<any[]> {
+  getAllAvailableProducts(): Observable<any[]> {
     
     const token = localStorage.getItem('token');
 
   const headers = new HttpHeaders({
     Authorization: `Bearer ${token}`
   });
-  return this.http.get<any[]>(`${this.apiUrl}/all`, {headers});
+  return this.http.get<any[]>(`${this.apiUrl}/available`, {headers});
+}
+getBoughtProducts(): Observable<any[]> {
+    
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.get<any[]>(`${this.apiUrl}/bought`, {headers});
 }
 buyProduct(product: any): Observable<any> {
     
@@ -34,6 +42,6 @@ buyProduct(product: any): Observable<any> {
   const headers = new HttpHeaders({
     Authorization: `Bearer ${token}`
   });
-  return this.http.patch<any>(`${this.apiUrl}/buy`, product ,{headers});
+  return this.http.patch<any>(`${this.apiUrl}/buy/${product}`,{},{headers});
 }
 }

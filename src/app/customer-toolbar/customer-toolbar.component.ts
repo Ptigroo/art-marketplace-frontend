@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-customer-toolbar',
@@ -17,4 +18,8 @@ import { RouterModule } from '@angular/router';
 })
 export class CustomerToolbarComponent {
 
+  constructor(private authService: AuthService) {}
+logout(): void {
+    this.authService.logout();
+  }
 }

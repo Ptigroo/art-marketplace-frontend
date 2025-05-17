@@ -1,7 +1,7 @@
 <ng-container *ngIf="role as userRole">
   <ng-container [ngSwitch]="userRole">
     <app-artisan-toolbar *ngSwitchCase="'Artisan'"></app-artisan-toolbar>
-    <app-customer-toolbar *ngSwitchCase="'Client'"></app-customer-toolbar>
+    <app-customer-toolbar *ngSwitchCase="'Customer'"></app-customer-toolbar>
   </ng-container>
 </ng-container>
 <router-outlet />
