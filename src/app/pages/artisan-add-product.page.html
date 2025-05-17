@@ -1,32 +1,43 @@
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Title</mat-label>
-      <input matInput formControlName="title" required />
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description"></textarea>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Price</mat-label>
-      <input matInput type="number" formControlName="price" required />
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Category</mat-label>
-      <input matInput formControlName="category" required />
-    </mat-form-field>
-    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+<mat-card class="add-product-card">
+  <mat-card-title>Ajouter un produit</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Titre</mat-label>
+        <input matInput formControlName="title" required />
+      </mat-form-field>
 
-    <div *ngIf="imagePreview" class="image-preview">
-      <p>Preview:</p>
-      <img [src]="imagePreview" alt="Image preview" class="preview-img" />
-    </div>
-  
-    <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
-      Add Product
-    </button>
-  </form>
-  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" rows="4"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Prix (€)</mat-label>
+        <input matInput type="number" formControlName="price" required />
+      </mat-form-field>
+      <mat-label>Category</mat-label>
+        <mat-select formControlName="category" required>
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+
+      <div class="file-upload">
+        <label for="image-upload">Image du produit</label>
+        <input type="file" id="image-upload" (change)="onFileSelected($event)" accept="image/*" />
+      </div>
+
+      <div *ngIf="imagePreview" class="image-preview">
+        <p>Prévisualisation :</p>
+        <img [src]="imagePreview" alt="Aperçu image" class="preview-img" />
+      </div>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
+          Ajouter
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

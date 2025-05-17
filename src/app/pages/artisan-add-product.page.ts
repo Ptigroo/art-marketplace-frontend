@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { CategoryService } from '../services/category.service';
+import { MatOption, MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-add-product',
@@ -22,13 +24,15 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     RouterModule,
     ReactiveFormsModule, 
+    MatSelect,
+    MatOption
   ],
 })
 export class AddProductPage {
   productForm: FormGroup;
   selectedFile: File | null = null;
-
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  categories: { id: number; name: string }[] = [];
+  constructor(private fb: FormBuilder, private productService: ProductService, private categoryService: CategoryService) {
     this.productForm = this.fb.group({
       title: ['', Validators.required],
       description: [''],
@@ -57,7 +61,7 @@ export class AddProductPage {
     formData.append('title', this.productForm.get('title')?.value);
     formData.append('description', this.productForm.get('description')?.value);
     formData.append('price', this.productForm.get('price')?.value);
-    formData.append('category', this.productForm.get('category')?.value);
+    formData.append('categoryId', this.productForm.get('category')?.value);
     formData.append('image', this.selectedFile);
 
     this.productService.createProduct(formData).subscribe({
@@ -69,6 +73,12 @@ export class AddProductPage {
       error: err => {
         console.error('Error creating product:', err);
       },
+    });
+  }
+  ngOnInit(): void {
+    this.categoryService.getCategories().subscribe({
+      next: (cats) => this.categories = cats,
+      error: (err) => console.error('Failed to fetch categories', err)
     });
   }
 }
