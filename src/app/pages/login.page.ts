@@ -48,6 +48,7 @@ export class LoginPage {
           localStorage.setItem('token', token);
           const decoded = this.jwtHelper.decodeToken(token);
           const role = decoded?.role;
+          this.authService.setRole(role);
           if (role === 'Artisan') {
             this.router.navigate(['/artisan/dashboard']);
           } else if (role === 'Customer') {

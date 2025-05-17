@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 export interface RegisterDto {
   username: string;
@@ -24,6 +25,19 @@ export class AuthService {
   private http = inject(HttpClient);
   private readonly apiUrl = 'https://localhost:5001'; // adapte selon ton backend
   private jwtHelper = new JwtHelperService();
+  constructor(private router: Router) {}
+  
+  private roleSubject = new BehaviorSubject<string | null>(localStorage.getItem('role'));
+  role$ = this.roleSubject.asObservable();
+
+  setRole(role: string | null) {
+    this.roleSubject.next(role);
+    if (role) {
+      localStorage.setItem('role', role);
+    } else {
+      localStorage.removeItem('role');
+    }
+  }
   register(data: RegisterDto): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/register`, data);
   }
@@ -34,6 +48,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    this.setRole(null);
+     this.router.navigate(['/auth/login']);
   }
 
   saveToken(token: string) {

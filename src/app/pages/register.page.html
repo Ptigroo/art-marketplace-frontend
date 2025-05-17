@@ -1,15 +1,18 @@
-<mat-card class="auth-card">
-    <h2>Créer un compte</h2>
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <h2 class="auth-title">Créer un compte</h2>
+
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" />
+        <input matInput type="email" formControlName="email" required />
       </mat-form-field>
-  
+
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Mot de passe</mat-label>
-        <input matInput type="password" formControlName="password" />
+        <input matInput type="password" formControlName="password" required />
       </mat-form-field>
+
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Rôle</mat-label>
         <mat-select formControlName="role" required>
@@ -18,7 +21,15 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">S'inscrire</button>
+
+      <button mat-raised-button color="primary" class="full-width" type="submit">
+        S'inscrire
+      </button>
     </form>
+
+    <div class="login-link">
+      <span>Déjà un compte ?</span>
+      <a  z-index="1000" routerLink="/auth/login">Se connecter</a>
+    </div>
   </mat-card>
-  
+</div>
