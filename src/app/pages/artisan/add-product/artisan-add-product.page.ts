@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CategoryService } from '../../../services/category/category.service';
@@ -32,7 +32,7 @@ export class AddProductPage {
   productForm: FormGroup;
   selectedFile: File | null = null;
   categories: { id: number; name: string }[] = [];
-  constructor(private fb: FormBuilder, private productService: ProductService, private categoryService: CategoryService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private categoryService: CategoryService,private router: Router) {
     this.productForm = this.fb.group({
       title: ['', Validators.required],
       description: [''],
@@ -67,7 +67,8 @@ export class AddProductPage {
     this.productService.createProduct(formData).subscribe({
       next: res => {
         console.log('Product created:', res);
-        this.productForm.reset();
+        this.router.navigate(['/']);
+        //this.productForm.reset();
         this.selectedFile = null;
       },
       error: err => {
