@@ -1,5 +1,5 @@
 
-<h2 class="product-title">Mes achats</h2>
+<h2 class="product-title">Mon panier</h2>
 <div class="product-list">
   <mat-card *ngFor="let product of products" class="product-card">
     <img mat-card-image [src]="product.imageUrl"  alt="{{ product.title }}">
@@ -9,8 +9,8 @@
       <p><strong>Price:</strong> {{ product.price }} €</p>
       <p><strong>Category:</strong> {{ product.category }}</p>
     </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" >Evaluer</button>
-  </mat-card-actions>
   </mat-card>
+</div>
+<div class="confirm-buy-button">
+  <button mat-raised-button color="accent" (click)="buyBasket()">Confirmer & Acheter</button>
 </div>

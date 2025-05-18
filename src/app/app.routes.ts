@@ -7,6 +7,7 @@ import { AvailableProductsPage } from './pages/customer/available-products/avail
 import { RoleRedirectGuard } from './guards/role-redirect.guard';
 import { MyProductsPage } from './pages/customer/my-products/my-products.page';
 import { MyProductsAsArtistPage } from './pages/artisan/my-products/my-products.page';
+import { BasketPage } from './pages/customer/basket/basket.page';
 
 export const routes: Routes = [
     { path: 'auth/login', component: LoginPage },
@@ -14,6 +15,7 @@ export const routes: Routes = [
     { path: 'artisan/my-products', component: MyProductsAsArtistPage },
     { path: 'artisan/add-product', component: AddProductPage },
     { path: 'customer/bought-products', component: MyProductsPage },
+    { path: 'customer/basket', component: BasketPage },
     { path: 'customer/available-products', component: AvailableProductsPage },
     { path: '', canActivate: [RoleRedirectGuard], component: LoginPage }, //set as loginpage but will in fact be a redirection to the correct widget
     { path: '**', redirectTo: 'auth/login' }];

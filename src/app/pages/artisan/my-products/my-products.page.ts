@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar  } from '@angular/material/snack-bar';
+import { MatOption, MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-my-products',
@@ -20,7 +21,10 @@ import { MatSnackBar  } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     RouterModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+    MatSelect,
+    MatOption
+  ],
   templateUrl: './my-products.page.html',
   styleUrl: './my-products.page.scss'
 })
@@ -33,4 +37,49 @@ products: any[] = [];
       error: err => console.error('Failed to load products:', err)
     });
   }
+  productStatuses: string[] = ['Disponible', 'Acheté', 'Réservé']; // adjust to your actual enum/string values
+selectedStatus: string = '';
+
+filteredProducts() {
+  return this.selectedStatus
+    ? this.products.filter(p => p.productStatus  === this.getTraslatedStatus(this.selectedStatus))
+    : this.products;
+}
+
+getStatusClass(status: string): string {
+  switch (status) {
+    case 'Available':
+      return 'available';
+    case 'Bought':
+      return 'bought';
+    case 'Basket':
+      return 'booked';
+    default:
+      return '';
+  }
+}
+getTraslatedStatus(status: string): string {
+  switch (status) {
+    case 'Disponible':
+      return 'Available';
+    case 'Acheté':
+      return 'Bought';
+    case 'Réservé':
+      return 'Basket';
+    default:
+      return '';
+  }
+}
+  getstatusfrenchName(status: string): string {
+  switch (status) {
+    case 'Available':
+      return 'Disponible';
+    case 'Bought':
+      return 'Acheté';
+    case 'Basket':
+      return 'Réservé';
+    default:
+      return '';
+  }
+}
 }

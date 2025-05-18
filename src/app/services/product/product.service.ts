@@ -36,13 +36,27 @@ getBoughtProducts(): Observable<any[]> {
   });
   return this.http.get<any[]>(`${this.apiUrl}/bought`, {headers});
 }
-buyProduct(product: any): Observable<any> {
+getBasket(): Observable<any[]> {
     
-    const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
   const headers = new HttpHeaders({
     Authorization: `Bearer ${token}`
   });
-  return this.http.patch<any>(`${this.apiUrl}/buy/${product}`,{},{headers});
+  return this.http.get<any[]>(`${this.apiUrl}/basket`, {headers});
+}
+addToBasket(productId: any): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.patch<any>(`${this.apiUrl}/addtobasket/${productId}`,{},{headers});
+}
+buyBasket(): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.patch<any>(`${this.apiUrl}/buybasket/`,{},{headers});
 }
 
 getMyProductAsArtist(): Observable<any> {

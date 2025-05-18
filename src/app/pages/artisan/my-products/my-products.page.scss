@@ -17,3 +17,30 @@ margin-top: 10px;
   height: 100px;
   object-fit: contain;  
 }
+.product-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.status-filter {
+  width: 200px;
+  margin-bottom: 16px;
+}
+
+.available {
+  background-color: #e0f7fa; 
+}
+
+.bought {
+  background-color: #cdffea;
+}
+
+.booked {
+  background-color: #fff9c4; 
+}
+.filter-container {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
