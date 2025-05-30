@@ -10,7 +10,10 @@
       <p><strong>Category:</strong> {{ product.category }}</p>
     </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" >Evaluer</button>
+    
+       <button mat-raised-button color="primary" (click)="openReviewDialog(product)">
+    Laisser un avis
+  </button>
   </mat-card-actions>
   </mat-card>
 </div>
