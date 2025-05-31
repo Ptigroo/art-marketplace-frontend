@@ -8,13 +8,14 @@ margin-top: 10px;
 
 .product-card {
   width: 300px;       
-  height: 300px;      
+  height: 350px;      
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .product-card img {
   height: 100px;
+  min-height: 100px;
   object-fit: contain;  
 }
 .product-title {

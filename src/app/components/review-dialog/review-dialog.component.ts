@@ -27,13 +27,14 @@ MatDialogModule],
 export class ReviewDialogComponent {
   reviewText = '';
   rating: any = 0;
-
+  isEditable: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<ReviewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.reviewText = data.product.reviewComment;
     this.rating = data.product.reviewRating ;
+    this.isEditable = localStorage.getItem('role') == "Customer";
   }
 
   submitReview() {
@@ -44,6 +45,8 @@ export class ReviewDialogComponent {
   }
   
   rateProduct(star: number) {
-    this.rating = star;
+    if (this.isEditable) {
+      this.rating = star;
+    }
   }
 }

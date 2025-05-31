@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar  } from '@angular/material/snack-bar';
 import { MatOption, MatSelect } from '@angular/material/select';
+import { MatDialog } from '@angular/material/dialog';
+import { ReviewDialogComponent } from '../../../components/review-dialog/review-dialog.component';
 
 @Component({
   selector: 'app-my-products',
@@ -30,7 +32,7 @@ import { MatOption, MatSelect } from '@angular/material/select';
 })
 export class MyProductsAsArtistPage {
 products: any[] = [];
-  constructor(private productService: ProductService,private snackBar: MatSnackBar) {}
+  constructor(private productService: ProductService,private snackBar: MatSnackBar, private dialog: MatDialog) {}
   ngOnInit(): void {
     this.productService.getMyProductAsArtist().subscribe({
       next: data => this.products = data,
@@ -82,4 +84,10 @@ getTraslatedStatus(status: string): string {
       return '';
   }
 }
+  openReviewDialog(product: any) {
+    this.dialog.open(ReviewDialogComponent, {
+      width: '400px',
+      data: { product }
+    });
+  }
 }
