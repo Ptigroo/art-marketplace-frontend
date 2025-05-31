@@ -8,12 +8,12 @@
     Donne une note à ton nouveau produit
   </div>
   <div class="rating-stars">
-     <mat-icon 
-      *ngFor="let star of [1,2,3,4,5]" 
-      [class.filled]="star <= rating"
-      (click)="rateProduct(star)">
-      star
-    </mat-icon>
+  <mat-icon
+    *ngFor="let star of [1, 2, 3, 4, 5]"
+    (click)="rateProduct(star)">
+    {{ star <= rating ? 'star' : 'star_border' }}
+  </mat-icon>
+</div>
 <mat-dialog-actions align="end">
   <button mat-button (click)="dialogRef.close()">Annuler</button>
   <button mat-button color="primary" (click)="submitReview()">Envoyer</button>

@@ -31,7 +31,10 @@ export class ReviewDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ReviewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    this.reviewText = data.product.reviewComment;
+    this.rating = data.product.reviewRating ;
+  }
 
   submitReview() {
     this.dialogRef.close({
@@ -40,7 +43,7 @@ export class ReviewDialogComponent {
     });
   }
   
-  rateProduct(rating: number) {
-    this.rating = rating;
+  rateProduct(star: number) {
+    this.rating = star;
   }
 }

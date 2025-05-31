@@ -43,7 +43,29 @@ export class MyProductsPage {
   });
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
-      // Call backend API to save review
+      
+    this.productService.reviewProduct(
+    {
+      id: product.id,
+      comment: result.review,
+      rating: result.rating
+    }).subscribe({
+    next: (res) => { 
+      this.products = [];
+      this.snackBar.open('Revue envoyée!', 'Fermer', {
+        duration: 3000,
+        verticalPosition: 'top', 
+        horizontalPosition: 'right',
+        panelClass: ['snackbar-success']
+      });
+    },
+    error: (err) => {
+      this.snackBar.open('Opération échouée, réessayer plus tard.', 'Fermer', {
+        duration: 3000,
+        panelClass: ['snackbar-error']
+      });
+    }
+  });
     }
   });
 }
