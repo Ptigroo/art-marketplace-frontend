@@ -19,6 +19,20 @@ export class ProductService {
   });
     return this.http.post(`${this.apiUrl}/addproduct`, productData, {headers});
   }
+  
+  editProduct(productData: FormData, producttId: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    try {
+      return this.http.put(`${this.apiUrl}/editproduct/${producttId}`, productData, {headers});
+      
+    } catch (error) {
+      var smth = error;
+      throw error;
+    }
+  }
   getAllAvailableProducts(): Observable<any[]> {
     
     const token = localStorage.getItem('token');

@@ -12,6 +12,7 @@ import { MatSnackBar  } from '@angular/material/snack-bar';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
 import { ReviewDialogComponent } from '../../../components/review-dialog/review-dialog.component';
+import { AddProductPage } from '../add-product/artisan-add-product.page';
 
 @Component({
   selector: 'app-my-products',
@@ -89,5 +90,18 @@ getTraslatedStatus(status: string): string {
       width: '400px',
       data: { product }
     });
+  }
+  openProductDialog(product: any) {
+    this.dialog.open(AddProductPage, {
+      width: '400px',
+      data: { product }
+    }).afterClosed().subscribe(result => {
+  if (result) {
+    const index = this.products.findIndex(p => p.id === result.id);
+    if (index !== -1) {
+      this.products[index] = result;
+    }
+  }
+});
   }
 }

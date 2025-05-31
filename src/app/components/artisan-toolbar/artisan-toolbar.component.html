@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <button mat-button routerLink="/artisan/my-products">Home</button>
     <span class="spacer"></span>
-    <button mat-button routerLink="/artisan/add-product">Ajouter un produit</button>
+    <button mat-button (click)="openAddProductDialog()">Ajouter un produit</button>
     <button mat-button (click)="logout()">Déconnexion</button>
   </mat-toolbar>
   
