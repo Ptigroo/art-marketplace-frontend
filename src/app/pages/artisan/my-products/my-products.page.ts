@@ -33,35 +33,28 @@ import { AddProductPage } from '../add-product/artisan-add-product.page';
 })
 export class MyProductsAsArtistPage {
 products: any[] = [];
+totalGains: any = 0;
+productStatuses: string[] = ['Disponible', 'Acheté', 'Réservé'];
+selectedStatus: string = '';
   constructor(private productService: ProductService,private snackBar: MatSnackBar, private dialog: MatDialog) {}
   ngOnInit(): void {
     this.productService.getMyProductAsArtist().subscribe({
-      next: data => this.products = data,
+      next: data => {
+        this.products = data;
+        this.totalGains = this.products
+          .filter(product => product.productStatus === 'Bought')
+          .reduce((sum, product) => sum + product.price, 0);
+      },
       error: err => console.error('Failed to load products:', err)
     });
   }
-  productStatuses: string[] = ['Disponible', 'Acheté', 'Réservé']; // adjust to your actual enum/string values
-selectedStatus: string = '';
 
 filteredProducts() {
   return this.selectedStatus
-    ? this.products.filter(p => p.productStatus  === this.getTraslatedStatus(this.selectedStatus))
+    ? this.products.filter(p => p.productStatus  === this.getStatusAPIName(this.selectedStatus))
     : this.products;
 }
-
-getStatusClass(status: string): string {
-  switch (status) {
-    case 'Available':
-      return 'available';
-    case 'Bought':
-      return 'bought';
-    case 'Basket':
-      return 'booked';
-    default:
-      return '';
-  }
-}
-getTraslatedStatus(status: string): string {
+getStatusAPIName(status: string): string {
   switch (status) {
     case 'Disponible':
       return 'Available';
@@ -73,7 +66,7 @@ getTraslatedStatus(status: string): string {
       return '';
   }
 }
-  getstatusfrenchName(status: string): string {
+  getStatusFrenchName(status: string): string {
   switch (status) {
     case 'Available':
       return 'Disponible';
@@ -92,16 +85,24 @@ getTraslatedStatus(status: string): string {
     });
   }
   openProductDialog(product: any) {
-    this.dialog.open(AddProductPage, {
-      width: '400px',
-      data: { product }
-    }).afterClosed().subscribe(result => {
-  if (result) {
-    const index = this.products.findIndex(p => p.id === result.id);
-    if (index !== -1) {
-      this.products[index] = result;
-    }
+        this.dialog.open(AddProductPage, {
+          width: '400px',
+          data: { product }
+        }).afterClosed().subscribe(result => {
+      if (result) {
+        const index = this.products.findIndex(p => p.id === result.id);
+        if (index !== -1) {
+          this.products[index] = result;
+        }
+      }
+    });
   }
-});
+  setProductAsPickedUp(product: any) {
+    this.productService.setProductAsPickedUp(product.id).subscribe({
+      next: (_) => {
+        product.deliveryStatus = "PickedFromArtist";
+      },
+      error: (err) => console.error('Erreur', err)
+    });
   }
 }

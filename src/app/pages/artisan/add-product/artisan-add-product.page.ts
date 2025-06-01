@@ -87,10 +87,10 @@ export class AddProductPage {
     }
     else
     {
-    this.modifiedProduct.title = this.productForm.get('title')?.value;
-    this.modifiedProduct.description = this.productForm.get('description')?.value;
-    this.modifiedProduct.price = this.productForm.get('price')?.value;
-    this.modifiedProduct.category = this.productForm.get('category')?.value.name;
+      this.modifiedProduct.title = this.productForm.get('title')?.value;
+      this.modifiedProduct.description = this.productForm.get('description')?.value;
+      this.modifiedProduct.price = this.productForm.get('price')?.value;
+      this.modifiedProduct.category = this.productForm.get('category')?.value.name;
       this.productService.editProduct(formData, this.modifiedProduct.id).subscribe();
       this.dialogRef.close(this.modifiedProduct);
     }

@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { ReviewDialogComponent } from '../../../components/review-dialog/review-dialog.component';
+import { MatOption, MatSelect } from '@angular/material/select';
 @Component({
   selector: 'app-my-products',
   imports: [
@@ -21,12 +22,14 @@ import { ReviewDialogComponent } from '../../../components/review-dialog/review-
     MatInputModule,
     RouterModule,
     ReactiveFormsModule,
-  MatIconModule],
+  MatIconModule, MatSelect, MatOption],
   templateUrl: './my-products.page.html',
   styleUrl: './my-products.page.scss'
 })
 export class MyProductsPage {
- products: any[] = [];
+  products: any[] = [];
+  deliveryStatuses: string[] = ['Livré', 'En livraison'];
+  selectedStatus: string = '';
   constructor(private productService: ProductService,private snackBar: MatSnackBar, private dialog: MatDialog) {}
   
   ngOnInit(): void {
@@ -36,6 +39,39 @@ export class MyProductsPage {
     });
   }
   
+  getDeliveryStatus(product: any) {
+    switch (product.deliveryStatus) {
+      case 'ToPickAtArtist':
+        return 'Chez l\'artisan';
+      case 'PickedFromArtist':
+        return 'Récupéré chez l\'artistan';
+      case 'WaitingForDeliveryOfficier':
+        return 'Attente d\'un livreur';
+      case 'InDelivery':
+        return 'En cours';
+      case 'Delivered':
+        return 'Livré';
+      default:
+        return '';
+    }
+  }
+  
+filteredProducts() {
+  if (!this.selectedStatus) {
+    return this.products;
+  }
+  else
+  {
+    if (this.selectedStatus == 'Livré') 
+    {
+      return this.products.filter(p => p.deliveryStatus  === 'Delivered')
+    }
+    else
+    {
+      return this.products.filter(p => p.deliveryStatus  !== 'Delivered')
+    }
+  }
+}
  openReviewDialog(product: any) {
   const dialogRef = this.dialog.open(ReviewDialogComponent, {
     width: '400px',

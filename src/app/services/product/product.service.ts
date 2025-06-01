@@ -65,6 +65,13 @@ addToBasket(productId: any): Observable<any> {
   });
   return this.http.patch<any>(`${this.apiUrl}/addtobasket/${productId}`,{},{headers});
 }
+setProductAsPickedUp(productId: any): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.patch<any>(`${this.apiUrl}/pickedup/${productId}`,{},{headers});
+}
 buyBasket(): Observable<any> {
   const token = localStorage.getItem('token');
   const headers = new HttpHeaders({

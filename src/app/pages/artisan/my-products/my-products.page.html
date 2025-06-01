@@ -1,4 +1,7 @@
-<h2 class="product-title">Mes produits</h2>
+<div class="title-bar">
+  <h2 class="product-title">Mes produits</h2>
+  <span class="total-price">Gains totaux: {{ totalGains ?? 0 }} €</span>
+</div>
 <div class="filter-container">
   <mat-form-field appearance="outline" class="status-filter">
     <mat-label>Filtrer par statut</mat-label>
@@ -11,25 +14,25 @@
 <div class="product-list">
   <mat-card *ngFor="let product of filteredProducts()" 
             class="product-card"
-            [ngClass]="getStatusClass(product.productStatus)">
+            [ngClass]="product.productStatus">
     <img mat-card-image [src]="product.imageUrl" alt="{{ product.title }}"  class="fixed-image">
     <mat-card-title>{{ product.title }}</mat-card-title>
     <mat-card-content>
       <p>{{ product.description }}</p>
       <p><strong>Price:</strong> {{ product.price }} €</p>
       <p><strong>Category:</strong> {{ product.category }}</p>
-      <p><strong>Statut:</strong> {{ getstatusfrenchName(product.productStatus) }}</p>
+      <p><strong>Statut:</strong> {{ getStatusFrenchName(product.productStatus) }}</p>
     </mat-card-content>
   <mat-card-actions>
-    
-  <ng-container [ngSwitch]="product.productStatus">
-    <button *ngSwitchCase="'Available'" mat-raised-button color="primary" (click)="openProductDialog(product)">
+    <button *ngIf="product.productStatus == 'Available'" mat-raised-button color="primary" (click)="openProductDialog(product)">
       Modifier
     </button>
-    <button *ngSwitchCase="'Bought'" mat-raised-button color="primary" (click)="openReviewDialog(product)">
+    <button *ngIf="product.productStatus =='Bought' && product.deliveryStatus != 'ToPickAtArtist' && product.reviewComment != ''" mat-raised-button color="primary" (click)="openReviewDialog(product)">
       Voire l'avis
     </button>
-  </ng-container>
+    <button *ngIf="product.deliveryStatus == 'ToPickAtArtist' && product.productStatus == 'Bought'" mat-raised-button color="primary" (click)="setProductAsPickedUp(product)">
+      Mettre que l'article à été récupéré par le livreur
+    </button>
   </mat-card-actions>
   </mat-card>
 </div>
