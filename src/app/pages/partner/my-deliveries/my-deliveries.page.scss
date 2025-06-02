@@ -18,46 +18,20 @@ margin-top: 10px;
   min-height: 100px;
   object-fit: contain;  
 }
-.title-bar {
-  position: relative;
+.product-title {
   text-align: center;
-  margin: 1rem;
-}
-
-
-.total-price {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-bottom: 20px;
+  font-size: 2rem;
   font-weight: bold;
 }
+
 .status-filter {
   width: 200px;
   margin-bottom: 16px;
 }
 
-.Available {
-  background-color: #e0f7fa; 
-}
-
-.Bought {
-  background-color: #cdffea;
-}
-
-.Basket {
-  background-color: #fff9c4; 
-}
 .filter-container {
   display: flex;
   justify-content: center;
   margin: 16px 0;
-}
-p{
-  display: flex; 
-  justify-content: space-between;
-}
-mat-card-title
-{
-  justify-content: center;
 }

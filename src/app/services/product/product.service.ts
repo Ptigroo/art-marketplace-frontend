@@ -65,13 +65,6 @@ addToBasket(productId: any): Observable<any> {
   });
   return this.http.patch<any>(`${this.apiUrl}/addtobasket/${productId}`,{},{headers});
 }
-setProductAsPickedUp(productId: any): Observable<any> {
-  const token = localStorage.getItem('token');
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`
-  });
-  return this.http.patch<any>(`${this.apiUrl}/pickedup/${productId}`,{},{headers});
-}
 buyBasket(): Observable<any> {
   const token = localStorage.getItem('token');
   const headers = new HttpHeaders({
@@ -94,5 +87,21 @@ getMyProductAsArtist(): Observable<any> {
     Authorization: `Bearer ${token}`
   });
   return this.http.get<any>(`${this.apiUrl}/artisan/`,{headers});
+}
+getMyProductsToDeliver(): Observable<any> {
+    
+    const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.get<any>(`${this.apiUrl}/todeliver/`,{headers});
+}
+
+setDeliveryStatusAsDone(productId: any): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.patch<any>(`${this.apiUrl}/deliveryStatusUpdate/${productId}`,{},{headers});
 }
 }

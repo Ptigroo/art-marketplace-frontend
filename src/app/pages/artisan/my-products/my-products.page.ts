@@ -78,6 +78,23 @@ getStatusAPIName(status: string): string {
       return '';
   }
 }
+
+  getDeliveryStatus(deliveryStatus: any) {
+    switch (deliveryStatus) {
+      case 'ToPickAtArtist':
+        return 'Chez l\'artisan';
+      case 'PickedFromArtist':
+        return 'Récupéré chez l\'artisan';
+      case 'WaitingForDeliveryOfficier':
+        return 'Attente d\'un livreur';
+      case 'InDelivery':
+        return 'En cours';
+      case 'Delivered':
+        return 'Livré';
+        default:
+          return '';
+    }
+  }
   openReviewDialog(product: any) {
     this.dialog.open(ReviewDialogComponent, {
       width: '400px',
@@ -98,7 +115,7 @@ getStatusAPIName(status: string): string {
     });
   }
   setProductAsPickedUp(product: any) {
-    this.productService.setProductAsPickedUp(product.id).subscribe({
+    this.productService.setDeliveryStatusAsDone(product.id).subscribe({
       next: (_) => {
         product.deliveryStatus = "PickedFromArtist";
       },

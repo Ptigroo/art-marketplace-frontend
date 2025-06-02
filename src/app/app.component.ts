@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { CustomerToolbarComponent } from './components/customer-toolbar/customer-toolbar.component';
 import { ArtisanToolbarComponent } from './components/artisan-toolbar/artisan-toolbar.component';
 import { AuthService } from './services/auth/auth.service';
+import { DeliveryPartnerToolbarComponent } from "./components/delivery-partner-toolbar/delivery-partner-toolbar.component";
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,
     CommonModule,
-    CustomerToolbarComponent, 
-    ArtisanToolbarComponent],
+    CustomerToolbarComponent,
+    ArtisanToolbarComponent, DeliveryPartnerToolbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

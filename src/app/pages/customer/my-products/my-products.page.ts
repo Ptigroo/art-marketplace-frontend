@@ -44,7 +44,7 @@ export class MyProductsPage {
       case 'ToPickAtArtist':
         return 'Chez l\'artisan';
       case 'PickedFromArtist':
-        return 'Récupéré chez l\'artistan';
+        return 'Récupéré chez l\'artisan';
       case 'WaitingForDeliveryOfficier':
         return 'Attente d\'un livreur';
       case 'InDelivery':

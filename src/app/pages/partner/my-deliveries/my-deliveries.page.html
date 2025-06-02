@@ -1,0 +1,27 @@
+<h2 class="product-title">Mes achats</h2>
+<div class="filter-container">
+  <mat-form-field appearance="outline" class="status-filter">
+    <mat-label>Filtrer par statut</mat-label>
+    <mat-select [(value)]="selectedStatus">
+      <mat-option value="">Tous</mat-option>
+      <mat-option *ngFor="let status of deliveryStatuses" [value]="status">{{ status }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="product-list">
+  <mat-card *ngFor="let product of filteredProducts()"  class="product-card">
+    <img mat-card-image [src]="product.imageUrl"  alt="{{ product.title }}" >
+    <mat-card-title>{{ product.title }}</mat-card-title>
+    <mat-card-content>
+      <p>{{ product.description }}</p>
+      <p><strong>Price:</strong> {{ product.price }} €</p>
+      <p><strong>Category:</strong> {{ product.category }}</p>
+      <p><strong>Livraison:</strong> {{ getDeliveryStatus(product) }}</p>
+    </mat-card-content>
+  <mat-card-actions>
+    <button *ngIf="product.deliveryStatus != 'ToPickAtArtist'" mat-raised-button color="primary" (click)="updateStatus(product)">
+        Etape exécutée
+    </button>
+  </mat-card-actions>
+  </mat-card>
+</div>
