@@ -1,11 +1,11 @@
-<h2 mat-dialog-title>Laisser un avis</h2>
+<h2 mat-dialog-title>Avis sur le produit</h2>
 <mat-dialog-content >
   <mat-form-field appearance="fill" style="width: 100%;" >
-    <mat-label>Votre commentaire</mat-label>
-    <textarea [readonly]="!isEditable" matInput [(ngModel)]="reviewText" ></textarea>
+    <mat-label> Commentaire</mat-label>
+    <textarea [readonly]="!isCustomer" matInput [(ngModel)]="reviewText" ></textarea>
   </mat-form-field>
   <div>
-    Donne une note à ton nouveau produit
+    Note
   </div>
   <div class="rating-stars">
   <mat-icon
@@ -14,8 +14,13 @@
     {{ star <= rating ? 'star' : 'star_border' }}
   </mat-icon>
 </div>
+  <mat-form-field appearance="fill" style="width: 100%;" >
+<mat-label>Réponse de l'artiste</mat-label>
+<textarea [readonly]="isCustomer" matInput [(ngModel)]="responseText" ></textarea>
+  </mat-form-field>
 <mat-dialog-actions align="end">
   <button mat-button (click)="dialogRef.close()">Annuler</button>
-  <button *ngIf="isEditable" mat-button color="primary" (click)="submitReview()">Envoyer</button>
+  <button *ngIf="isCustomer" mat-button color="primary" (click)="submitReview()">Envoyer</button>
+  <button *ngIf="!isCustomer" mat-button color="primary" (click)="submitResponse()">Envoyer</button>
 </mat-dialog-actions>
 </mat-dialog-content>

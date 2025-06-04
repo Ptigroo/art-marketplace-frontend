@@ -72,13 +72,7 @@ buyBasket(): Observable<any> {
   });
   return this.http.patch<any>(`${this.apiUrl}/buybasket/`,{},{headers});
 }
-reviewProduct(productReview: any): Observable<any> {
-  const token = localStorage.getItem('token');
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`
-  });
-  return this.http.patch<any>(`${this.apiUrl}/review/`,productReview,{headers});
-}
+
 
 getMyProductAsArtist(): Observable<any> {
     

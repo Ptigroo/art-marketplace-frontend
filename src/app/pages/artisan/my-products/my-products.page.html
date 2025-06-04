@@ -28,7 +28,7 @@
     <button *ngIf="product.productStatus == 'Available'" mat-raised-button color="primary" (click)="openProductDialog(product)">
       Modifier
     </button>
-    <button *ngIf="product.productStatus =='Bought' && product.deliveryStatus != 'ToPickAtArtist' && product.reviewComment != ''" mat-raised-button color="primary" (click)="openReviewDialog(product)">
+    <button *ngIf="product.productStatus =='Bought' && product.reviewId != null" mat-raised-button color="primary" (click)="openReviewDialog(product)">
       Voire l'avis
     </button>
     <button *ngIf="product.deliveryStatus == 'ToPickAtArtist' && product.productStatus == 'Bought'" mat-raised-button color="primary" (click)="setProductAsPickedUp(product)">

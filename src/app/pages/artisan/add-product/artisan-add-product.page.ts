@@ -82,7 +82,7 @@ export class AddProductPage {
     }
     if (this.isCreation) {
       this.productService.createProduct(formData).subscribe();
-      this.dialogRef.close();
+      window.location.reload();
 
     }
     else

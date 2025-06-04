@@ -12,8 +12,8 @@
 <div class="product-list">
   <mat-card *ngFor="let product of filteredProducts()" class="product-card">
     <img mat-card-image [src]="product.imageUrl"  alt="{{ product.title }}" >
-    <mat-card-title>{{ product.title }}</mat-card-title>
     <mat-card-content>
+      <mat-card-title>{{ product.title }}</mat-card-title>
       <p>{{ product.description }}</p>
       <p><strong>Price:</strong> {{ product.price }} €</p>
       <p><strong>Category:</strong> {{ product.category }}</p>

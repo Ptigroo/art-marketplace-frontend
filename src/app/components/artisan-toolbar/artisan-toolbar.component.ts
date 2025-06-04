@@ -24,7 +24,7 @@ logout(): void {
   }
   
     openAddProductDialog(product: any = null) {
-      this.dialog.open(AddProductPage, {
+       const dialogRef = this.dialog.open(AddProductPage, {
         width: '400px',
         data: { product }
       });

@@ -7,11 +7,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { ProductService } from '../../../services/product/product.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { ReviewDialogComponent } from '../../../components/review-dialog/review-dialog.component';
 import { MatOption, MatSelect } from '@angular/material/select';
+import { ReviewService } from '../../../services/review/review.service';
 @Component({
   selector: 'app-my-products',
   imports: [
@@ -30,7 +30,7 @@ export class MyProductsPage {
   products: any[] = [];
   deliveryStatuses: string[] = ['Livré', 'En livraison'];
   selectedStatus: string = '';
-  constructor(private productService: ProductService,private snackBar: MatSnackBar, private dialog: MatDialog) {}
+  constructor(private productService: ProductService, private dialog: MatDialog, private reviewService : ReviewService) {}
   
   ngOnInit(): void {
     this.productService.getBoughtProducts().subscribe({
@@ -73,36 +73,9 @@ filteredProducts() {
   }
 }
  openReviewDialog(product: any) {
-  const dialogRef = this.dialog.open(ReviewDialogComponent, {
+   this.dialog.open(ReviewDialogComponent, {
     width: '400px',
     data: { product }
-  });
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      
-    this.productService.reviewProduct(
-    {
-      id: product.id,
-      comment: result.review,
-      rating: result.rating
-    }).subscribe({
-    next: (res) => { 
-      this.products = [];
-      this.snackBar.open('Revue envoyée!', 'Fermer', {
-        duration: 3000,
-        verticalPosition: 'top', 
-        horizontalPosition: 'right',
-        panelClass: ['snackbar-success']
-      });
-    },
-    error: (err) => {
-      this.snackBar.open('Opération échouée, réessayer plus tard.', 'Fermer', {
-        duration: 3000,
-        panelClass: ['snackbar-error']
-      });
-    }
-  });
-    }
   });
 }
 }
