@@ -1,6 +1,17 @@
 Pour lancer l'app:
   -  Se place à la racine du projet et lancer: ng serve
 
+Identifiants par role:
+  -  Artisan
+      -  user: artisan@projet-web.com
+      -  password: artisan
+  -  Customer
+      -  user: customer@projet-web.com
+      -  password: customer
+  -  Delivery partner
+      -  user: delivery@projet-web.com
+      -  password: delivery
+
 Cas d'usage implémentés:
 
   Utilisateur non identifié:
