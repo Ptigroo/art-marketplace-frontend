@@ -81,8 +81,8 @@ export class AddProductPage {
       formData.append('image', this.selectedFile);
     }
     if (this.isCreation) {
-      this.productService.createProduct(formData).subscribe();
-      window.location.reload();
+      this.productService.createProduct(formData).subscribe(() => window.location.reload());
+      
 
     }
     else
