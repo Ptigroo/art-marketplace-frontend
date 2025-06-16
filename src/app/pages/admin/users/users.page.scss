@@ -1,0 +1,33 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.title-bar,
+.filter-container {
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.inline-user-list {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column; /* ← This is important! Keeps user list in a vertical stack */
+  gap: 0.75rem;
+  margin-left: 1rem; /* Optional: for left alignment inside a centered container */
+}
+
+.inline-user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background-color: #f9f9f9;
+}

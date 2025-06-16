@@ -82,8 +82,6 @@ export class AddProductPage {
     }
     if (this.isCreation) {
       this.productService.createProduct(formData).subscribe(() => window.location.reload());
-      
-
     }
     else
     {

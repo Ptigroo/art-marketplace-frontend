@@ -19,6 +19,8 @@ export class RoleRedirectGuard implements CanActivate {
         this.router.navigate(['/customer/available-products']);
       } else if (role === 'DeliveryPartner') {
         this.router.navigate(['/partner/my-deliveries']);
+      } else if (role === 'Admin') {
+        this.router.navigate(['/admin/users']);
       } else {
         this.router.navigate(['/auth/login']);
       }

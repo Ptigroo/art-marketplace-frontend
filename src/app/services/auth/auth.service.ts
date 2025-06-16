@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
@@ -62,4 +62,20 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
+  
+  deleteUser(id: any) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+    return this.http.delete(`${this.apiUrl}/user/${id}`, {headers});
+  }
+  getAllUsers(): Observable<any[]> {
+    
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.get<any[]>(`${this.apiUrl}/users`, {headers});
+}
 }

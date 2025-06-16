@@ -5,13 +5,14 @@ import { CustomerToolbarComponent } from './components/customer-toolbar/customer
 import { ArtisanToolbarComponent } from './components/artisan-toolbar/artisan-toolbar.component';
 import { AuthService } from './services/auth/auth.service';
 import { DeliveryPartnerToolbarComponent } from "./components/delivery-partner-toolbar/delivery-partner-toolbar.component";
+import { AdminToolbarComponent } from "./components/admin-toolbar/admin-toolbar.component";
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,
     CommonModule,
     CustomerToolbarComponent,
-    ArtisanToolbarComponent, DeliveryPartnerToolbarComponent],
+    ArtisanToolbarComponent, DeliveryPartnerToolbarComponent, AdminToolbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
