@@ -8,9 +8,9 @@ Identifiants par role:
   -  Customer
       -  user: customer@projet-web.com
       -  password: customer
-  -  Delivery partner
-      -  user: delivery@projet-web.com
-      -  password: delivery
+  -  Admin
+      -  user: admin@projet-web.com
+      -  password: admin
 
 Cas d'usage implémentés:
 
@@ -46,6 +46,10 @@ Cas d'usage implémentés:
   -  Le partenaire de livraison a accès à l'ensemble des produit qu'il doit livrer
   -  Il a la possibilité de passer l'état de livraison à l'étape suivante (Excepté le fait qu'il a récupéré le colis chez l'artiste qui doit être validé par l'artiste)
   -  Se déconnecter via la nav bar
+  -  
+  Utilisateur connecté en tant qu'admin
+  -  L'admin peut voire l'ensemble des utilisateurs de l'application
+  -  Il peut supprimer un utilisateur => celui-ci n'arrivera plus à se connecter
   
 
 
