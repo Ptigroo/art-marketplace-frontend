@@ -50,6 +50,7 @@ Cas d'usage implémentés:
   Utilisateur connecté en tant qu'admin
   -  L'admin peut voire l'ensemble des utilisateurs de l'application
   -  Il peut supprimer un utilisateur => celui-ci n'arrivera plus à se connecter
+  -  Se déconnecter
   
 
 
